@@ -1,1 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Andreani - Elige tu Regalo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        header {
+            background-color: #ff0000;
+            color: white;
+            padding: 1rem 0;
+        }
+        header h1 {
+            margin: 0;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 2rem;
+        }
+        .gift {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin: 1rem;
+            padding: 1rem;
+            width: 200px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .gift:hover {
+            transform: scale(1.05);
+        }
+        .gift img {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+        .gift h3 {
+            font-size: 1.2rem;
+            margin: 0.5rem 0;
+        }
+        #code-container {
+            display: none;
+            margin-top: 2rem;
+            padding: 1rem;
+            background-color: #dff0d8;
+            border: 1px solid #3c763d;
+            border-radius: 8px;
+            color: #3c763d;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenido a Andreani</h1>
+        <p>Selecciona tu regalo y obtén un código de descuento exclusivo</p>
+    </header>
+
+    <div class="container">
+        <div class="gift" onclick="selectGift('DESC10')">
+            <img src="https://via.placeholder.com/150?text=Regalo+Navide%C3%B1o+1" alt="Regalo Navideño 1">
+            <h3>Regalo Navideño 1</h3>
+        </div>
+        <div class="gift" onclick="selectGift('DESC20')">
+            <img src="https://via.placeholder.com/150?text=Regalo+Navide%C3%B1o+2" alt="Regalo Navideño 2">
+            <h3>Regalo Navideño 2</h3>
+        </div>
+        <div class="gift" onclick="selectGift('DESC30')">
+            <img src="https://via.placeholder.com/150?text=Regalo+Navide%C3%B1o+3" alt="Regalo Navideño 3">
+            <h3>Regalo Navideño 3</h3>
+        </div>
+    </div>
+
+    <div id="code-container">
+        <h2>¡Felicidades!</h2>
+        <p>Tu código de descuento es: <span id="discount-code"></span></p>
+        <p>Úsalo al finalizar tu compra.</p>
+    </div>
+
+    <script>
+        let selected = false;
+
+        function selectGift(code) {
+            if (!selected) {
+                selected = true;
+                document.getElementById('discount-code').textContent = code;
+                document.getElementById('code-container').style.display = 'block';
+
+                const gifts = document.querySelectorAll('.gift');
+                gifts.forEach(gift => {
+                    gift.style.pointerEvents = 'none';
+                    gift.style.opacity = gift.querySelector('h3').textContent.includes(code) ? '1' : '0.5';
+                });
+            }
+        }
+    </script>
+</body>
+</html>
 
